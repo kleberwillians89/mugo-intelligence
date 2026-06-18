@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding Estratégico Mugô</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="page">
+    <section class="hero">
+      <div class="logo-box">
+        <img src="assets/logo_mugo.png" alt="Logo Mugô" class="logo" />
+      </div>
+
+      <span class="tag">Onboarding do cliente</span>
+
+      <h1>Vamos entender melhor sua marca</h1>
+
+      <p>
+        Este formulário nos ajuda a organizar as informações iniciais do projeto,
+        mapear prioridades e preparar os próximos passos da sua operação com a Mugô.
+      </p>
+    </section>
+
+    <form id="briefingForm" class="form">
+
+      <h2>Dados principais</h2>
+
+      <input name="empresa" placeholder="Nome da empresa" required />
+      <input name="responsavel" placeholder="Nome do responsável" required />
+      <input name="telefone" placeholder="WhatsApp" required />
+      <input name="email" type="email" placeholder="E-mail" required />
+      <input name="cnpj" placeholder="CNPJ" />
+      <input name="site" placeholder="Site atual" />
+      <input name="instagram" placeholder="Instagram" />
+
+      <h2>Sobre o negócio</h2>
+
+      <textarea name="servicos" placeholder="Quais produtos ou serviços sua empresa oferece?" required></textarea>
+      <textarea name="publico_alvo" placeholder="Quem é o público-alvo da empresa?" required></textarea>
+      <textarea name="diferenciais" placeholder="O que diferencia sua marca dos concorrentes?" required></textarea>
+
+      <h2>Marca e comunicação</h2>
+
+      <textarea name="missao_visao_valores" placeholder="Missão, visão e valores da marca"></textarea>
+      <textarea name="tom_de_voz" placeholder="Como você descreveria o tom de voz da marca?"></textarea>
+      <textarea name="concorrentes" placeholder="Quais são os principais concorrentes?"></textarea>
+      <textarea name="referencias" placeholder="Quais marcas ou perfis servem de inspiração?"></textarea>
+
+      <h2>Redes sociais</h2>
+
+      <textarea name="objetivos_redes" placeholder="Quais são os principais objetivos nas redes sociais?"></textarea>
+      <textarea name="metricas" placeholder="Quais métricas são mais importantes? Ex: alcance, engajamento, leads, vendas"></textarea>
+      <textarea name="temas_conteudo" placeholder="Quais temas precisam entrar no planejamento?"></textarea>
+      <select name="frequencia">
+        <option value="">Frequência desejada de postagens</option>
+        <option>1x por semana</option>
+        <option>2x por semana</option>
+        <option>3x por semana</option>
+        <option>4x ou mais por semana</option>
+        <option>A definir com a Mugô</option>
+      </select>
+
+      <h2>Tráfego pago</h2>
+
+      <select name="quer_trafego_pago">
+        <option value="">Deseja contratar gestão de tráfego pago?</option>
+        <option>Sim</option>
+        <option>Não</option>
+        <option>Quero entender melhor</option>
+      </select>
+
+      <select name="investimento_midia">
+        <option value="">Qual valor mensal pretende investir em mídia?</option>
+        <option>Até R$ 1.000</option>
+        <option>R$ 1.000 a R$ 3.000</option>
+        <option>R$ 3.000 a R$ 5.000</option>
+        <option>R$ 5.000 a R$ 10.000</option>
+        <option>Acima de R$ 10.000</option>
+        <option>Ainda não definido</option>
+      </select>
+
+      <textarea name="canais_trafego" placeholder="Quais canais pretende usar? Ex: Meta Ads, Google Ads, LinkedIn Ads, TikTok Ads"></textarea>
+
+      <h2>Tecnologia e automação</h2>
+
+      <select name="interesse_chatbot">
+        <option value="">Tem interesse em chatbot para WhatsApp?</option>
+        <option>Sim</option>
+        <option>Não</option>
+        <option>Quero entender melhor</option>
+      </select>
+
+      <select name="interesse_automacoes">
+        <option value="">Tem interesse em automações de processos?</option>
+        <option>Sim</option>
+        <option>Não</option>
+        <option>Quero entender melhor</option>
+      </select>
+
+      <select name="interesse_ia">
+        <option value="">Tem interesse em Inteligência Artificial para o negócio?</option>
+        <option>Sim</option>
+        <option>Não</option>
+        <option>Quero entender melhor</option>
+      </select>
+
+      <select name="interesse_dashboard">
+        <option value="">Tem interesse em dashboards e indicadores?</option>
+        <option>Sim</option>
+        <option>Não</option>
+        <option>Quero entender melhor</option>
+      </select>
+
+      <h2>Site, e-commerce ou plataforma</h2>
+
+      <select name="possui_site">
+        <option value="">Possui site atualmente?</option>
+        <option>Sim</option>
+        <option>Não</option>
+      </select>
+
+      <select name="interesse_site">
+        <option value="">Tem interesse em desenvolver algo novo?</option>
+        <option>Landing page</option>
+        <option>Site institucional</option>
+        <option>E-commerce</option>
+        <option>Área do cliente</option>
+        <option>Plataforma personalizada</option>
+        <option>Não neste momento</option>
+      </select>
+
+      <textarea name="plataforma_personalizada" placeholder="Existe alguma plataforma ou sistema que gostaria de desenvolver? Ex: CRM, portal, dashboard, app, sistema interno"></textarea>
+
+      <h2>Acessos e ferramentas</h2>
+
+      <textarea name="ferramentas_atuais" placeholder="Quais ferramentas sua empresa usa hoje? Ex: Shopify, RD Station, Bling, Google Ads, Meta Business, GA4, WhatsApp Business"></textarea>
+      
+
+      <h2>Próximos passos</h2>
+
+      <textarea name="desafios" placeholder="Qual é o maior desafio da empresa neste momento?" required></textarea>
+      <textarea name="prioridades" placeholder="Quais são as prioridades para os próximos 30 dias?"></textarea>
+      <textarea name="observacoes" placeholder="Tem algo importante que não podemos ignorar?"></textarea>
+
+      <button type="submit">Enviar onboarding</button>
+
+      <p id="message"></p>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
