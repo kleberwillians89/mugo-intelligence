@@ -1,4 +1,4 @@
-const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbybDS8vOCFQ9MGECMq1pa1B7c1A2Vl5f36-TSM-o8fKQogHeWjgBY_gCHEUMibSbyaJ/exec";
+const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbz-7Osf_Au_tzZ8IWbojqfQfHO0IEjaZIadn2oLinm2qisLMmzRJRAZIka1l9jWSEVYmQ/exec";
 const MUGO_WHATSAPP = "5511973510549";
 
 const trackedAnalyticsEvents = new Set();
