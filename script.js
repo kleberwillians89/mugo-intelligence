@@ -1,6 +1,52 @@
 const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbybDS8vOCFQ9MGECMq1pa1B7c1A2Vl5f36-TSM-o8fKQogHeWjgBY_gCHEUMibSbyaJ/exec";
 const MUGO_WHATSAPP = "5511973510549";
 
+const trackedAnalyticsEvents = new Set();
+const metaEventNames = {
+  segment_selected: "ViewContent",
+  diagnostic_started: "ViewContent",
+  diagnostic_completed: "Lead",
+  whatsapp_click: "Contact"
+};
+
+function trackGAEvent(eventName, params = {}) {
+  try {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, params);
+      return;
+    }
+    if (Array.isArray(window.dataLayer)) {
+      window.dataLayer.push({ event: eventName, ...params });
+    }
+  } catch (_) {
+    // Analytics nunca deve interromper o diagnóstico.
+  }
+}
+
+function trackMetaEvent(eventName, params = {}) {
+  try {
+    if (typeof window.fbq === "function") {
+      window.fbq("track", eventName, params);
+    }
+  } catch (_) {
+    // Analytics nunca deve interromper o diagnóstico.
+  }
+}
+
+function trackEvent(eventName, params = {}) {
+  const eventKey = eventName === "segment_selected"
+    ? `${eventName}:${params.segment_id || params.segmento || "unknown"}`
+    : eventName;
+
+  if (trackedAnalyticsEvents.has(eventKey)) return false;
+  trackedAnalyticsEvents.add(eventKey);
+
+  trackGAEvent(eventName, params);
+  const metaEventName = metaEventNames[eventName];
+  if (metaEventName) trackMetaEvent(metaEventName, params);
+  return true;
+}
+
 const categories = ["Marketing", "Vendas", "Automação", "Dados", "Relacionamento"];
 const segments = [
   { id: "hotel", label: "Hotéis e pousadas", icon: "⌂", group: "turismo" },
@@ -390,6 +436,12 @@ async function runAnalysis(result) {
     item.classList.add("done");
   }
   renderResult(result);
+  trackEvent("diagnostic_completed", {
+    segmento: selectedSegment.label,
+    score_geral: result.overall,
+    principal_oportunidade: result.main.title,
+    servico_mugo_recomendado: result.main.service
+  });
   submitToSheets(result);
   analysisScreen.classList.add("hidden");
   resultScreen.classList.remove("hidden");
@@ -402,6 +454,11 @@ document.addEventListener("change", event => {
     document.getElementById("otherSegmentField").classList.toggle("hidden", !isOther);
     form.elements.segmento_outro.required = isOther;
     document.getElementById("segmentError").textContent = "";
+    trackEvent("segment_selected", {
+      segmento: event.target.value,
+      segment_id: event.target.dataset.id,
+      segment_group: event.target.dataset.group
+    });
   }
   const card = event.target.closest(".question-card");
   if (card) card.classList.remove("invalid");
@@ -409,7 +466,12 @@ document.addEventListener("change", event => {
 });
 
 document.querySelectorAll(".next-btn").forEach(button => button.addEventListener("click", () => {
-  if (validateStep(currentStep)) showStep(currentStep + 1);
+  if (validateStep(currentStep)) {
+    if (currentStep === 0) {
+      trackEvent("diagnostic_started", { segmento: selectedSegment.label });
+    }
+    showStep(currentStep + 1);
+  }
 }));
 document.querySelectorAll(".back-btn").forEach(button => button.addEventListener("click", () => showStep(currentStep - 1)));
 
@@ -427,6 +489,15 @@ form.elements.telefone.addEventListener("input", event => {
   const digits = event.target.value.replace(/\D/g, "").slice(0, 11);
   if (digits.length <= 10) event.target.value = digits.replace(/(\d{2})(\d{0,4})(\d{0,4})/, (_, area, first, last) => `(${area}) ${first}${last ? `-${last}` : ""}`);
   else event.target.value = digits.replace(/(\d{2})(\d{0,5})(\d{0,4})/, (_, area, first, last) => `(${area}) ${first}${last ? `-${last}` : ""}`);
+});
+
+document.getElementById("whatsappCta").addEventListener("click", () => {
+  if (!selectedSegment || !lastResult) return;
+  trackEvent("whatsapp_click", {
+    segmento: selectedSegment.label,
+    score_geral: lastResult.overall,
+    empresa: form.elements.empresa.value.trim()
+  });
 });
 
 document.getElementById("restartBtn").addEventListener("click", () => {
