@@ -3,154 +3,158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Onboarding Estratégico Mugô</title>
+  <meta name="theme-color" content="#003e57" />
+  <meta name="description" content="Descubra o nível de maturidade do seu negócio em marketing, vendas, automação, dados e relacionamento." />
+  <title>MUGÔ Business Index™</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <main class="page">
-    <section class="hero">
-      <div class="logo-box">
-        <img src="assets/logo_mugo.png" alt="Logo Mugô" class="logo" />
+    <header class="topbar">
+      <a href="#" class="logo-link" aria-label="Mugô — início">
+        <img src="assets/logo_mugo.png" alt="Mugô" class="logo" />
+      </a>
+      <span class="topbar-label">Business Index™</span>
+    </header>
+
+    <section class="hero" id="hero">
+      <span class="eyebrow">Diagnóstico estratégico gratuito</span>
+      <h1>Clareza para o seu<br /><em>próximo movimento.</em></h1>
+      <p>Em poucos minutos, descubra o nível de maturidade do seu negócio e as oportunidades com maior potencial de impacto.</p>
+      <div class="hero-proof" aria-label="Características do diagnóstico">
+        <span><i>✓</i> Personalizado</span>
+        <span><i>✓</i> Resultado imediato</span>
+        <span><i>✓</i> Sem custo</span>
       </div>
-
-      <span class="tag">Onboarding do cliente</span>
-
-      <h1>Vamos entender melhor sua marca</h1>
-
-      <p>
-        Este formulário nos ajuda a organizar as informações iniciais do projeto,
-        mapear prioridades e preparar os próximos passos da sua operação com a Mugô.
-      </p>
     </section>
 
-    <form id="briefingForm" class="form">
+    <section class="index-card" id="indexCard">
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-meta">
+          <span id="stepLabel">Etapa 1 de 4</span>
+          <span id="progressPercent">25%</span>
+        </div>
+        <div class="progress-track"><span id="progressBar"></span></div>
+      </div>
 
-      <h2>Dados principais</h2>
+      <form id="briefingForm" novalidate>
+        <input type="hidden" name="flow_version" value="MUGO Business Index V1" />
 
-      <input name="empresa" placeholder="Nome da empresa" required />
-      <input name="responsavel" placeholder="Nome do responsável" required />
-      <input name="telefone" placeholder="WhatsApp" required />
-      <input name="email" type="email" placeholder="E-mail" required />
-      <input name="cnpj" placeholder="CNPJ" />
-      <input name="site" placeholder="Site atual" />
-      <input name="instagram" placeholder="Instagram" />
+        <section class="form-step active" data-step="0" aria-labelledby="segmentTitle">
+          <div class="step-heading">
+            <span class="step-kicker">Primeiro, conte para a gente</span>
+            <h2 id="segmentTitle">Qual é o segmento do seu negócio?</h2>
+            <p>Assim, o diagnóstico considera a realidade do seu mercado.</p>
+          </div>
+          <div class="segment-grid" id="segmentGrid"></div>
+          <label class="field other-segment hidden" id="otherSegmentField">
+            <span>Qual é o seu segmento?</span>
+            <input type="text" name="segmento_outro" placeholder="Digite o segmento do negócio" />
+          </label>
+          <p class="field-error" id="segmentError" role="alert"></p>
+          <div class="step-actions single"><button type="button" class="primary-btn next-btn">Continuar <span>→</span></button></div>
+        </section>
 
-      <h2>Sobre o negócio</h2>
+        <section class="form-step" data-step="1" aria-labelledby="contactTitle">
+          <div class="step-heading">
+            <span class="step-kicker">Sobre você e seu negócio</span>
+            <h2 id="contactTitle">Para quem entregamos o diagnóstico?</h2>
+            <p>Seus dados serão usados somente para este diagnóstico e contato da Mugô.</p>
+          </div>
+          <div class="fields-grid">
+            <label class="field"><span>Nome *</span><input name="responsavel" autocomplete="name" placeholder="Seu nome" required /></label>
+            <label class="field"><span>Empresa *</span><input name="empresa" autocomplete="organization" placeholder="Nome da empresa" required /></label>
+            <label class="field"><span>WhatsApp *</span><input name="telefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" required /></label>
+            <label class="field"><span>E-mail *</span><input name="email" type="email" autocomplete="email" placeholder="voce@empresa.com.br" required /></label>
+            <label class="field"><span>Instagram *</span><input name="instagram" placeholder="@suaempresa" required /></label>
+            <label class="field"><span>Site *</span><input name="site" inputmode="url" placeholder="www.suaempresa.com.br" required /></label>
+            <label class="field"><span>LinkedIn <small>opcional</small></span><input name="linkedin" placeholder="linkedin.com/company/..." /></label>
+            <label class="field"><span>Google Meu Negócio <small>opcional</small></span><input name="google_meu_negocio" placeholder="Link do perfil no Google" /></label>
+          </div>
+          <p class="field-error" role="alert"></p>
+          <div class="step-actions"><button type="button" class="ghost-btn back-btn">← Voltar</button><button type="button" class="primary-btn next-btn">Continuar <span>→</span></button></div>
+        </section>
 
-      <textarea name="servicos" placeholder="Quais produtos ou serviços sua empresa oferece?" required></textarea>
-      <textarea name="publico_alvo" placeholder="Quem é o público-alvo da empresa?" required></textarea>
-      <textarea name="diferenciais" placeholder="O que diferencia sua marca dos concorrentes?" required></textarea>
+        <section class="form-step" data-step="2" aria-labelledby="maturityTitle">
+          <div class="step-heading">
+            <span class="step-kicker">Maturidade do negócio</span>
+            <h2 id="maturityTitle">Como sua operação funciona hoje?</h2>
+            <p>Escolha a alternativa mais próxima da sua realidade. Não existem respostas certas.</p>
+          </div>
+          <div id="universalQuestions" class="questions-list"></div>
+          <p class="field-error" role="alert"></p>
+          <div class="step-actions"><button type="button" class="ghost-btn back-btn">← Voltar</button><button type="button" class="primary-btn next-btn">Continuar <span>→</span></button></div>
+        </section>
 
-      <h2>Marca e comunicação</h2>
+        <section class="form-step" data-step="3" aria-labelledby="specificTitle">
+          <div class="step-heading">
+            <span class="step-kicker">Um olhar para o seu mercado</span>
+            <h2 id="specificTitle">Só mais alguns detalhes</h2>
+            <p id="specificIntro">Perguntas rápidas para deixar sua análise mais precisa.</p>
+          </div>
+          <div id="specificQuestions" class="questions-list"></div>
+          <label class="privacy-check">
+            <input type="checkbox" name="aceite_contato" value="Sim" required />
+            <span>Concordo em receber meu diagnóstico e contatos da Mugô sobre oportunidades para o meu negócio.</span>
+          </label>
+          <p class="field-error" role="alert"></p>
+          <div class="step-actions"><button type="button" class="ghost-btn back-btn">← Voltar</button><button type="submit" class="primary-btn submit-btn">Gerar meu diagnóstico <span>→</span></button></div>
+        </section>
+      </form>
 
-      <textarea name="missao_visao_valores" placeholder="Missão, visão e valores da marca"></textarea>
-      <textarea name="tom_de_voz" placeholder="Como você descreveria o tom de voz da marca?"></textarea>
-      <textarea name="concorrentes" placeholder="Quais são os principais concorrentes?"></textarea>
-      <textarea name="referencias" placeholder="Quais marcas ou perfis servem de inspiração?"></textarea>
+      <section class="analysis-screen hidden" id="analysisScreen" aria-live="polite">
+        <div class="analysis-orbit"><span class="orbit-ring"></span><strong>M</strong></div>
+        <span class="step-kicker">MUGÔ Business Index™</span>
+        <h2>Estamos conectando os pontos.</h2>
+        <div class="analysis-list" id="analysisList">
+          <div><i></i><span>Analisando seu segmento</span></div>
+          <div><i></i><span>Analisando sua presença digital</span></div>
+          <div><i></i><span>Identificando oportunidades</span></div>
+          <div><i></i><span>Gerando resultado</span></div>
+        </div>
+      </section>
 
-      <h2>Redes sociais</h2>
+      <section class="result-screen hidden" id="resultScreen" aria-live="polite">
+        <div class="result-hero">
+          <span class="step-kicker">Seu diagnóstico está pronto</span>
+          <h2>MUGÔ Business Index™</h2>
+          <p id="resultGreeting"></p>
+          <div class="score-gauge" id="scoreGauge"><div><strong id="overallScore">0</strong><span>/100</span><small>Score geral</small></div></div>
+          <p class="score-reading" id="scoreReading"></p>
+        </div>
 
-      <textarea name="objetivos_redes" placeholder="Quais são os principais objetivos nas redes sociais?"></textarea>
-      <textarea name="metricas" placeholder="Quais métricas são mais importantes? Ex: alcance, engajamento, leads, vendas"></textarea>
-      <textarea name="temas_conteudo" placeholder="Quais temas precisam entrar no planejamento?"></textarea>
-      <select name="frequencia">
-        <option value="">Frequência desejada de postagens</option>
-        <option>1x por semana</option>
-        <option>2x por semana</option>
-        <option>3x por semana</option>
-        <option>4x ou mais por semana</option>
-        <option>A definir com a Mugô</option>
-      </select>
+        <div class="result-section">
+          <div class="section-title"><span>01</span><h3>Visão por categoria</h3></div>
+          <div class="score-list" id="categoryScores"></div>
+        </div>
 
-      <h2>Tráfego pago</h2>
+        <div class="insight-grid">
+          <article class="insight-card strengths"><span class="card-icon">↗</span><h3>Pontos fortes</h3><ul id="strengthsList"></ul></article>
+          <article class="insight-card bottlenecks"><span class="card-icon">!</span><h3>Gargalos</h3><ul id="bottlenecksList"></ul></article>
+        </div>
 
-      <select name="quer_trafego_pago">
-        <option value="">Deseja contratar gestão de tráfego pago?</option>
-        <option>Sim</option>
-        <option>Não</option>
-        <option>Quero entender melhor</option>
-      </select>
+        <div class="result-section">
+          <div class="section-title"><span>02</span><h3>3 oportunidades para avançar</h3></div>
+          <div class="opportunities" id="opportunitiesList"></div>
+        </div>
 
-      <select name="investimento_midia">
-        <option value="">Qual valor mensal pretende investir em mídia?</option>
-        <option>Até R$ 1.000</option>
-        <option>R$ 1.000 a R$ 3.000</option>
-        <option>R$ 3.000 a R$ 5.000</option>
-        <option>R$ 5.000 a R$ 10.000</option>
-        <option>Acima de R$ 10.000</option>
-        <option>Ainda não definido</option>
-      </select>
+        <div class="consultive-box">
+          <span class="step-kicker">Leitura consultiva Mugô</span>
+          <p id="consultiveSummary"></p>
+          <div class="recommended-service"><span>Serviço recomendado</span><strong id="recommendedService"></strong></div>
+        </div>
 
-      <textarea name="canais_trafego" placeholder="Quais canais pretende usar? Ex: Meta Ads, Google Ads, LinkedIn Ads, TikTok Ads"></textarea>
+        <div class="next-steps">
+          <div><span class="step-kicker">Próximo pass recomendado</span><h3>Transforme o diagnóstico em plano de ação.</h3><p>Converse com a Júlia e receba uma leitura estratégica sobre a principal oportunidade do seu negócio.</p></div>
+          <a id="whatsappCta" class="whatsapp-btn" href="#" target="_blank" rel="noopener">Falar com a Júlia no WhatsApp <span>↗</span></a>
+        </div>
+        <button type="button" class="restart-btn" id="restartBtn">Refazer diagnóstico</button>
+        <p class="submit-status" id="message"></p>
+      </section>
+    </section>
 
-      <h2>Tecnologia e automação</h2>
-
-      <select name="interesse_chatbot">
-        <option value="">Tem interesse em chatbot para WhatsApp?</option>
-        <option>Sim</option>
-        <option>Não</option>
-        <option>Quero entender melhor</option>
-      </select>
-
-      <select name="interesse_automacoes">
-        <option value="">Tem interesse em automações de processos?</option>
-        <option>Sim</option>
-        <option>Não</option>
-        <option>Quero entender melhor</option>
-      </select>
-
-      <select name="interesse_ia">
-        <option value="">Tem interesse em Inteligência Artificial para o negócio?</option>
-        <option>Sim</option>
-        <option>Não</option>
-        <option>Quero entender melhor</option>
-      </select>
-
-      <select name="interesse_dashboard">
-        <option value="">Tem interesse em dashboards e indicadores?</option>
-        <option>Sim</option>
-        <option>Não</option>
-        <option>Quero entender melhor</option>
-      </select>
-
-      <h2>Site, e-commerce ou plataforma</h2>
-
-      <select name="possui_site">
-        <option value="">Possui site atualmente?</option>
-        <option>Sim</option>
-        <option>Não</option>
-      </select>
-
-      <select name="interesse_site">
-        <option value="">Tem interesse em desenvolver algo novo?</option>
-        <option>Landing page</option>
-        <option>Site institucional</option>
-        <option>E-commerce</option>
-        <option>Área do cliente</option>
-        <option>Plataforma personalizada</option>
-        <option>Não neste momento</option>
-      </select>
-
-      <textarea name="plataforma_personalizada" placeholder="Existe alguma plataforma ou sistema que gostaria de desenvolver? Ex: CRM, portal, dashboard, app, sistema interno"></textarea>
-
-      <h2>Acessos e ferramentas</h2>
-
-      <textarea name="ferramentas_atuais" placeholder="Quais ferramentas sua empresa usa hoje? Ex: Shopify, RD Station, Bling, Google Ads, Meta Business, GA4, WhatsApp Business"></textarea>
-      
-
-      <h2>Próximos passos</h2>
-
-      <textarea name="desafios" placeholder="Qual é o maior desafio da empresa neste momento?" required></textarea>
-      <textarea name="prioridades" placeholder="Quais são as prioridades para os próximos 30 dias?"></textarea>
-      <textarea name="observacoes" placeholder="Tem algo importante que não podemos ignorar?"></textarea>
-
-      <button type="submit">Enviar onboarding</button>
-
-      <p id="message"></p>
-    </form>
+    <footer><span>MUGÔ Business Index™</span><p>Estratégia, tecnologia e criatividade para negócios que querem avançar.</p></footer>
   </main>
-
   <script src="script.js"></script>
 </body>
 </html>
