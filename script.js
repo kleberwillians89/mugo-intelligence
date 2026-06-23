@@ -48,21 +48,108 @@ function trackEvent(eventName, params = {}) {
 }
 
 const categories = ["Marketing", "Vendas", "Automação", "Dados", "Relacionamento"];
-const segments = [
-  { id: "hotel", label: "Hotéis e pousadas", icon: "⌂", group: "turismo" },
-  { id: "turismo", label: "Turismo", icon: "✦", group: "turismo" },
-  { id: "restaurante", label: "Restaurantes", icon: "◉", group: "restaurante" },
-  { id: "saude", label: "Saúde e clínicas", icon: "+", group: "saude" },
-  { id: "dentista", label: "Odontologia", icon: "◇", group: "saude" },
-  { id: "veterinaria", label: "Veterinárias", icon: "♧", group: "saude" },
-  { id: "ecommerce", label: "E-commerce", icon: "□", group: "ecommerce" },
-  { id: "investimentos", label: "Investimentos", icon: "↗", group: "investimentos" },
-  { id: "engenharia", label: "Engenharia", icon: "△", group: "projetos" },
-  { id: "arquitetura", label: "Arquitetura", icon: "⌁", group: "projetos" },
-  { id: "agencia", label: "Agências", icon: "✳", group: "servicos" },
-  { id: "servicos", label: "Outros serviços", icon: "◎", group: "servicos" },
-  { id: "outro", label: "Outro segmento", icon: "…", group: "servicos" }
+const mainSegments = [
+  { id: "saude_clinicas", label: "Saúde e Clínicas", icon: "+", group: "saude" },
+  { id: "servicos_profissionais", label: "Serviços Profissionais", icon: "◎", group: "servicos" },
+  { id: "turismo_hospitalidade", label: "Turismo e Hospitalidade", icon: "✦", group: "turismo" },
+  { id: "vestuario_beleza_luxo", label: "Vestuário, Beleza e Luxo", icon: "★", group: "servicos" },
+  { id: "educacao_infoprodutos", label: "Educação e Infoprodutos", icon: "✎", group: "servicos" },
+  { id: "financas_investimentos", label: "Finanças e Investimentos", icon: "↗", group: "investimentos" },
+  { id: "tecnologia_inovacao", label: "Tecnologia e Inovação", icon: "⚙", group: "servicos" },
+  { id: "gastronomia", label: "Gastronomia", icon: "◉", group: "restaurante" },
+  { id: "marketing_comunicacao_agencias", label: "Marketing, Comunicação e Agências", icon: "✳", group: "servicos" },
+  { id: "eventos_experiencias", label: "Eventos e Experiências", icon: "⧗", group: "servicos" },
+  { id: "outro", label: "Outro", icon: "…", group: "servicos" }
 ];
+
+const subsegmentsBySegment = {
+  saude_clinicas: [
+    { id: "clinica_medica", label: "Clínica Médica" },
+    { id: "clinica_multidisciplinar", label: "Clínica Multidisciplinar" },
+    { id: "clinica_estetica", label: "Clínica de Estética" },
+    { id: "laboratorio", label: "Laboratório" },
+    { id: "centro_medico", label: "Centro Médico" }
+  ],
+  servicos_profissionais: [
+    { id: "dentista", label: "Dentista" },
+    { id: "veterinario", label: "Veterinário" },
+    { id: "psicologo", label: "Psicólogo" },
+    { id: "nutricionista", label: "Nutricionista" },
+    { id: "fisioterapeuta", label: "Fisioterapeuta" },
+    { id: "advogado", label: "Advogado" },
+    { id: "contador", label: "Contador" },
+    { id: "engenheiro", label: "Engenheiro" },
+    { id: "arquiteto", label: "Arquiteto" },
+    { id: "consultor", label: "Consultor" }
+  ],
+  turismo_hospitalidade: [
+    { id: "hotel", label: "Hotel" },
+    { id: "pousada", label: "Pousada" },
+    { id: "resort", label: "Resort" },
+    { id: "agencia_turismo", label: "Agência de Turismo" },
+    { id: "operadora_turismo", label: "Operadora de Turismo" },
+    { id: "experiencias_turisticas", label: "Experiências Turísticas" }
+  ],
+  vestuario_beleza_luxo: [
+    { id: "moda_feminina", label: "Moda Feminina" },
+    { id: "moda_masculina", label: "Moda Masculina" },
+    { id: "moda_infantil", label: "Moda Infantil" },
+    { id: "moda_premium", label: "Moda Premium" },
+    { id: "joalheria", label: "Joalheria" },
+    { id: "cosmeticos", label: "Cosméticos" },
+    { id: "beleza", label: "Beleza" },
+    { id: "skinwear", label: "Skinwear" },
+    { id: "marca_de_luxo", label: "Marca de Luxo" }
+  ],
+  educacao_infoprodutos: [
+    { id: "escola", label: "Escola" },
+    { id: "faculdade", label: "Faculdade" },
+    { id: "curso_livre", label: "Curso Livre" },
+    { id: "mentoria", label: "Mentoria" },
+    { id: "infoprodutor", label: "Infoprodutor" },
+    { id: "consultoria_educacional", label: "Consultoria Educacional" }
+  ],
+  financas_investimentos: [
+    { id: "assessoria_financeira", label: "Assessoria Financeira" },
+    { id: "consultoria_financeira", label: "Consultoria Financeira" },
+    { id: "family_office", label: "Family Office" },
+    { id: "seguros", label: "Seguros" },
+    { id: "investimentos", label: "Investimentos" }
+  ],
+  tecnologia_inovacao: [
+    { id: "saas", label: "SaaS" },
+    { id: "startup", label: "Startup" },
+    { id: "software_house", label: "Software House" },
+    { id: "inteligencia_artificial", label: "Inteligência Artificial" },
+    { id: "tecnologia_b2b", label: "Tecnologia B2B" }
+  ],
+  gastronomia: [
+    { id: "restaurante", label: "Restaurante" },
+    { id: "cafe", label: "Café" },
+    { id: "vinicola", label: "Vinícola" },
+    { id: "delivery", label: "Delivery" },
+    { id: "alimentacao_premium", label: "Alimentação Premium" }
+  ],
+  marketing_comunicacao_agencias: [
+    { id: "agencia_marketing", label: "Agência de Marketing" },
+    { id: "agencia_publicidade", label: "Agência de Publicidade" },
+    { id: "agencia_trafego_pago", label: "Agência de Tráfego Pago" },
+    { id: "social_media", label: "Social Media" },
+    { id: "branding", label: "Branding" },
+    { id: "design", label: "Design" },
+    { id: "desenvolvimento_web", label: "Desenvolvimento Web" },
+    { id: "produtora_audiovisual", label: "Produtora Audiovisual" }
+  ],
+  eventos_experiencias: [
+    { id: "eventos_corporativos", label: "Eventos Corporativos" },
+    { id: "eventos_esportivos", label: "Eventos Esportivos" },
+    { id: "congressos", label: "Congressos" },
+    { id: "feiras", label: "Feiras" },
+    { id: "produtora_de_eventos", label: "Produtora de Eventos" },
+    { id: "experiencias_premium", label: "Experiências Premium" }
+  ],
+  outro: []
+};
 
 const universalQuestions = [
   {
@@ -210,10 +297,31 @@ function getUtmParams() {
 }
 
 function renderSegments() {
-  document.getElementById("segmentGrid").innerHTML = segments.map(segment => `
+  document.getElementById("segmentGrid").innerHTML = mainSegments.map(segment => `
     <label class="segment-option">
       <input type="radio" name="segmento" value="${segment.label}" data-id="${segment.id}" data-group="${segment.group}" required>
       <span><b>${segment.icon}</b>${segment.label}</span>
+    </label>
+  `).join("");
+}
+
+function renderSubsegments(mainId) {
+  const subsegments = subsegmentsBySegment[mainId] || [];
+  const wrapper = document.getElementById("subsegmentWrapper");
+  const grid = document.getElementById("subsegmentGrid");
+
+  if (!subsegments.length) {
+    wrapper.classList.add("hidden");
+    grid.innerHTML = "";
+    form.elements.subsegmento.value = "";
+    return;
+  }
+
+  wrapper.classList.remove("hidden");
+  grid.innerHTML = subsegments.map(subsegment => `
+    <label class="segment-option">
+      <input type="radio" name="subsegmento" value="${subsegment.label}" data-id="${subsegment.id}" required>
+      <span>${subsegment.label}</span>
     </label>
   `).join("");
 }
@@ -275,11 +383,20 @@ function validateStep(stepIndex) {
       otherInput.focus();
       return false;
     }
+    const subsegmentChecked = form.querySelector('input[name="subsegmento"]:checked');
+    if (!subsegmentChecked && checked.dataset.id !== "outro") {
+      error.textContent = "Selecione o subsegmento do seu negócio para continuar.";
+      return false;
+    }
     selectedSegment = {
       id: checked.dataset.id,
       label: checked.dataset.id === "outro" ? otherInput.value.trim() : checked.value,
-      group: checked.dataset.group
+      group: checked.dataset.group,
+      subsegmentId: subsegmentChecked ? subsegmentChecked.dataset.id : "",
+      subsegmentLabel: subsegmentChecked ? subsegmentChecked.value : otherInput.value.trim()
     };
+    form.elements.segmento_principal.value = checked.value;
+    form.elements.subsegmento.value = selectedSegment.subsegmentLabel || "";
     renderSpecificQuestions();
     return true;
   }
@@ -399,6 +516,8 @@ function submitToSheets(result) {
   data.append("score_automacao", result.scores.Automação);
   data.append("score_dados", result.scores.Dados);
   data.append("score_relacionamento", result.scores.Relacionamento);
+  data.append("segmento_principal", form.elements.segmento_principal.value.trim());
+  data.append("subsegmento", form.elements.subsegmento.value.trim());
   data.append("principal_oportunidade", `${result.main.title}: ${result.main.opportunity}`);
   data.append("servico_mugo_recomendado", result.main.service);
   data.append("resumo_gerado", result.summary);
@@ -453,6 +572,8 @@ document.addEventListener("change", event => {
     const isOther = event.target.dataset.id === "outro";
     document.getElementById("otherSegmentField").classList.toggle("hidden", !isOther);
     form.elements.segmento_outro.required = isOther;
+    renderSubsegments(event.target.dataset.id);
+    form.elements.subsegmento.value = "";
     document.getElementById("segmentError").textContent = "";
     trackEvent("segment_selected", {
       segmento: event.target.value,
@@ -507,6 +628,9 @@ document.getElementById("restartBtn").addEventListener("click", () => {
   form.querySelector(".submit-btn").disabled = false;
   form.querySelector(".submit-btn").innerHTML = 'Gerar meu diagnóstico <span>→</span>';
   document.getElementById("otherSegmentField").classList.add("hidden");
+  document.getElementById("subsegmentWrapper").classList.add("hidden");
+  form.elements.segmento_principal.value = "";
+  form.elements.subsegmento.value = "";
   resultScreen.classList.add("hidden");
   form.classList.remove("hidden");
   progressWrap.classList.remove("hidden");

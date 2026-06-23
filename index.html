@@ -85,10 +85,16 @@
             <p>Assim, o diagnóstico considera a realidade do seu mercado.</p>
           </div>
           <div class="segment-grid" id="segmentGrid"></div>
+          <div class="subsegment-wrapper hidden" id="subsegmentWrapper">
+            <p class="subsegment-label">Qual atividade descreve melhor sua empresa?</p>
+            <div class="segment-grid" id="subsegmentGrid"></div>
+          </div>
           <label class="field other-segment hidden" id="otherSegmentField">
-            <span>Qual é o seu segmento?</span>
-            <input type="text" name="segmento_outro" placeholder="Digite o segmento do negócio" />
+            <span>Descreva brevemente o segmento da sua empresa</span>
+            <input type="text" name="segmento_outro" placeholder="Ex: comércio local, ONG, indústria, esporte, cultura..." />
           </label>
+          <input type="hidden" name="segmento_principal" value="" />
+          <input type="hidden" name="subsegmento" value="" />
           <p class="field-error" id="segmentError" role="alert"></p>
           <div class="step-actions single"><button type="button" class="primary-btn next-btn">Continuar <span>→</span></button></div>
         </section>

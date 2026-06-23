@@ -58,6 +58,8 @@ button, label { -webkit-tap-highlight-color: transparent; }
 .step-heading p { margin: 0; color: var(--muted); line-height: 1.55; }
 
 .segment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.subsegment-wrapper { margin-top: 20px; }
+.subsegment-label { margin-bottom: 12px; color: #38505a; font-size: .92rem; font-weight: 700; }
 .segment-option { position: relative; }
 .segment-option input { position: absolute; opacity: 0; pointer-events: none; }
 .segment-option span { display: flex; min-height: 68px; padding: 14px 16px; align-items: center; gap: 10px; color: #3f555d; background: #fbfcfc; border: 1px solid var(--line); border-radius: 15px; cursor: pointer; font-size: .88rem; font-weight: 600; transition: .2s ease; }
