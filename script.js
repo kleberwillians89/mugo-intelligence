@@ -489,12 +489,8 @@ Acabei de concluir o Diagnóstico Mugô e gostaria de continuar meu atendimento.
 Empresa: ${form.elements.empresa.value.trim()}
 Segmento: ${selectedSegment.label}
 Score Geral: ${result.overall}/100
-
-Principal oportunidade:
-${result.main.title}
-
-Serviço recomendado:
-${result.main.service}
+Principal oportunidade: ${result.main.opportunity || result.main.title}
+Serviço recomendado: ${result.main.service}
 
 Gostaria de entender como a Mugô pode me ajudar a evoluir esses resultados.`;
 
