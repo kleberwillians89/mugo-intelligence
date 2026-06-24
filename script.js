@@ -1,5 +1,5 @@
 const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbz-7Osf_Au_tzZ8IWbojqfQfHO0IEjaZIadn2oLinm2qisLMmzRJRAZIka1l9jWSEVYmQ/exec";
-const MUGO_WHATSAPP = "5511973510549";
+const MUGO_WHATSAPP = "5511986531008";
 
 const trackedAnalyticsEvents = new Set();
 const metaEventNames = {
@@ -481,8 +481,24 @@ function renderResult(result) {
   document.getElementById("consultiveSummary").textContent = result.summary;
   document.getElementById("recommendedService").textContent = result.main.service;
 
-  const text = `Olá, Júlia! Fiz o MUGÔ Business Index. Meu negócio é a ${form.elements.empresa.value.trim()}, do segmento ${selectedSegment.label}, e meu score foi ${result.overall}/100. Quero conversar sobre ${result.main.category.toLowerCase()}.`;
-  document.getElementById("whatsappCta").href = `https://wa.me/${MUGO_WHATSAPP}?text=${encodeURIComponent(text)}`;
+  const text =
+  `Olá, equipe Mugô.
+
+  Acabei de concluir o Diagnóstico Mugô e gostaria de continuar o atendimento.
+
+  Empresa: ${form.elements.empresa.value.trim()}
+
+  Segmento: ${selectedSegment.label}
+
+  Score Geral: ${result.overall}/100
+
+  Principal oportunidade identificada:
+  ${result.main.title}
+
+  Serviço recomendado:
+  ${result.main.service}
+
+  Aguardo contato para entendermos os próximos passos.`;
 }
 
 function collectAnswers() {
