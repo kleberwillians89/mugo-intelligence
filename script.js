@@ -481,24 +481,26 @@ function renderResult(result) {
   document.getElementById("consultiveSummary").textContent = result.summary;
   document.getElementById("recommendedService").textContent = result.main.service;
 
-  const text =
-  `Olá, equipe Mugô.
+    const text =
+      `Olá, equipe Mugô 👋
 
-  Acabei de concluir o Diagnóstico Mugô e gostaria de continuar o atendimento.
+      Acabei de concluir o Diagnóstico Mugô e gostaria de continuar meu atendimento.
 
-  Empresa: ${form.elements.empresa.value.trim()}
+      📌 Empresa: ${form.elements.empresa.value.trim()}
+      🏷️ Segmento: ${selectedSegment.label}
 
-  Segmento: ${selectedSegment.label}
+      📊 Score Geral: ${result.overall}/100
 
-  Score Geral: ${result.overall}/100
+      🎯 Principal oportunidade:
+      ${result.main.title}
 
-  Principal oportunidade identificada:
-  ${result.main.title}
+      🚀 Serviço recomendado:
+      ${result.main.service}
 
-  Serviço recomendado:
-  ${result.main.service}
+      Gostaria de entender como a Mugô pode me ajudar a evoluir esses resultados.`;
 
-  Aguardo contato para entendermos os próximos passos.`;
+        document.getElementById("whatsappCta").href =
+          `https://wa.me/${MUGO_WHATSAPP}?text=${encodeURIComponent(text)}`;
 }
 
 function collectAnswers() {
